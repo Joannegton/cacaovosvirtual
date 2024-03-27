@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dicasRecebidas = document.getElementById('dicas-recebidas');
 
     let vidasRestantes = 3;
+    let randomQuestion;
 
     const randomPositions = generateRandomPositions(7);
 
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         eggElement.setAttribute('data-egg-id', index + 1);
         eggElement.style.top = `${position.top}px`;
         eggElement.style.left = `${position.left}px`;
-        eggElement.addEventListener('click', () => showQuestionModal());
+        eggElement.addEventListener('click', showQuestionModal);
         gameBoard.appendChild(eggElement);
     });
 
@@ -38,37 +39,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showQuestionModal() {
-        const randomQuestion = getRandomQuestion();
+        randomQuestion = getRandomQuestion();
         questionText.textContent = randomQuestion.question;
         modal.style.display = 'block';
+    
+        closeButton.addEventListener('click', closeModal);
+        
+        submitButton.addEventListener('click', submitButtonClick);
+    }
 
-        closeButton.addEventListener('click', () => {
+    function closeModal() {
+        modal.style.display = 'none';
+        answerInput.value = '';
+        closeButton.removeEventListener('click', closeModal);
+        submitButton.removeEventListener('click', submitButtonClick);
+    }
+    
+    function submitButtonClick() {
+        // Desabilita o botão após o primeiro clique
+        submitButton.disabled = true;
+    
+        const userAnswer = answerInput.value.trim().toLowerCase();
+        if (userAnswer === randomQuestion.answer.toLowerCase()) {
+            alert('Resposta correta! Você Recebeu a primeira DICA!');
             modal.style.display = 'none';
             answerInput.value = '';
-        });
-
-        submitButton.addEventListener('click', () => {
-            const userAnswer = answerInput.value.trim().toLowerCase();
-            if (userAnswer === randomQuestion.answer.toLowerCase()) {
-                alert('Resposta correta! Você Recebeu a primeira DICA!');
-                modal.style.display = 'none';
-                answerInput.value = '';
-                showHint(randomQuestion);
-            } else {
-                alert('Resposta incorreta! Tente novamente.');
-                answerInput.value = '';
-                modal.style.display = 'none';
-                vidasRestantes--; // Reduz uma vida
-                updateVidas(); // Atualiza a exibição das vidas
-            }
-        });
+            showHint(randomQuestion);
+            submitButton.disabled = false;
+        } else {
+            answerInput.value = '';
+            modal.style.display = 'none';
+            vidasRestantes = vidasRestantes - 1;
+            submitButton.disabled = false;
+            updateVidas(); 
+        }
     }
+    
+    submitButton.addEventListener('click', submitButtonClick);
 
     function updateVidas() {
         vidasElement.textContent = `Vidas Restantes: ${vidasRestantes}`;
         if (vidasRestantes === 0) {
-            alert('Game Over! Você perdeu todas as vidas.');
-            // Adicione aqui o código para reiniciar o jogo ou outra ação desejada
+            alert('Game Over! Você perdeu todas as vidas.\nConfirme para reiniciar.');
+            window.location.reload();
         }
     }
 
