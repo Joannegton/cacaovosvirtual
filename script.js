@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
         if (dicasUtilizadas < 3) {
             const novaDica = document.createElement('p');
-            const dica = conjuntodicas['hidrante'] //mudar o local
+            const dica = conjuntodicas['porta do banheiro'] //mudar o local
             novaDica.textContent = `Dica ${dicasUtilizadas + 1}: ${dica[dicasUtilizadas]}`;
             dicasRecebidas.appendChild(novaDica);
             dicasUtilizadas++;
