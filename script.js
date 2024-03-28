@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const vidasElement = document.getElementById('vidas');
     const dicasRecebidas = document.getElementById('dicas-recebidas');
 
-    let vidasRestantes = 3;
+    let vidasRestantes = 7;
     let randomQuestion;
 
     const randomPositions = generateRandomPositions(7);
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 17, question: 'Qual é o resultado de 8 + 5?', answer: '13' },
             { id: 18, question: 'Qual é o maior deserto do mundo?', answer: 'deserto do saara' },
             { id: 19, question: 'Quem foi o presidente dos Estados Unidos durante a Segunda Guerra Mundial?', answer: 'franklin roosevelt' },
-            { id: 20, question:  'Qual é o animal símbolo do Brasil?', answer: 'onça-pintada'},
+            { id: 20, question:  'Qual é o animal símbolo do Brasil?', answer: 'sabia-laranjeira'},
             { id: 21, question: 'Qual é o maior animal do mundo?', answer: 'baleia azul' }
         ];
         
