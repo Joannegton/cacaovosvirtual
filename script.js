@@ -87,26 +87,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getRandomQuestion() {
         const questions = [
-            { id: 1, question: 'Quanto é 5 x 7?', answer: '35', hint: 'A resposta é um número múltiplo de 5 e 7.' },
-            { id: 2, question: 'Qual é a capital do Brasil?', answer: 'brasilia', hint: 'É uma cidade planejada no centro-oeste do país.' },
-            { id: 3, question: 'Quem escreveu "Dom Quixote"?', answer: 'cervantes', hint: 'Foi um escritor espanhol do século XVI.' },
-            // Adicione mais perguntas conforme necessário
+            { id: 1, question: 'Quanto é 5 x 7?', answer: '35' },
+            { id: 2, question: 'Qual é a capital do Brasil?', answer: 'brasilia' },
+            { id: 3, question: 'Quem escreveu "Dom Quixote"?', answer: 'cervantes' },
+            { id: 4, question: 'Quem pintou a "Mona Lisa"?', answer: 'leonardo da vinci' },
+            { id: 5, question: 'Qual é a maior cidade do Brasil?', answer: 'sao paulo' },
+            { id: 6, question: 'Quem foi o primeiro presidente do Brasil?', answer: 'deodoro da fonseca' },
+            { id: 7, question: 'Qual é o maior planeta do sistema solar?', answer: 'jupiter' },
+            { id: 8, question: 'Qual é a raiz quadrada de 64?', answer: '8' },
+            { id: 9, question: 'Qual é o resultado de 7 elevado a 2?', answer: '49' },
+            { id: 10, question: 'Quem pintou a "Noite Estrelada"?', answer: 'vincent van gogh' },
+            { id: 11, question: 'Qual é o resultado de 4³?', answer: '64' },
+            { id: 12, question: 'Quanto é 25% de 80?', answer: '20' },
+            { id: 13, question: 'Quem foi o primeiro homem a pisar na Lua?', answer: 'neil armstrong' },
+            { id: 14, question: 'Qual é o maior oceano do mundo?', answer: 'oceano pacifico' },
+            { id: 15, question: 'Qual é a raiz quadrada de 81?', answer: '9' },
+            { id: 16, question: 'Qual é o maior rio do mundo?', answer: 'amazonas' },
+            { id: 17, question: 'Qual é o resultado de 8 + 5?', answer: '13' },
+            { id: 18, question: 'Qual é o maior deserto do mundo?', answer: 'deserto do saara' },
+            { id: 19, question: 'Quem foi o presidente dos Estados Unidos durante a Segunda Guerra Mundial?', answer: 'franklin roosevelt' },
+            { id: 20, question:  'Qual é o animal símbolo do Brasil?', answer: 'onça-pintada'},
+            { id: 21, question: 'Qual é o maior animal do mundo?', answer: 'baleia azul' }
         ];
+        
 
         const randomIndex = Math.floor(Math.random() * questions.length);
         return questions[randomIndex];
     }
 
     let dicasUtilizadas = 0;
-    const dicas = ['Onde você come', 'Onde você senta', 'Onde você apresenta'];
+    const conjuntodicas = {
+        'cadeira refeitorio': ['Onde você come', 'Onde você senta', 'Onde você apresenta'],
+        'porta do banheiro': ['O refúgio dos pensamentos profundos', 'Esconde o segredo da higiene', 'Se fechar, dá privacidade; se abrir, liberdade'],
+        'hidrante': ['Onde a pressão é controlada, você encontra a chave', 'Aqui é onde a força contra o fogo esconde algo valioso', 'Na fonte da segurança contra incêndios é o caminho para descobrir.'],
+        'lixo': ['Onde os objetos indesejados vão', 'Onde se livra do que não serve mais', 'Onde você descarta o que não precisa mais'],
+        'bebedouro': ['Oásis em meio ao deserto', 'Ponto de encontro para conversas refrescantes', 'Onde a água é servida']
+    };
+    
+    
 
-    function showHint(question) {
-        hintDiv.textContent = `Dica: ${question.hint}`;
-        hintDiv.style.display = 'block';
-
+    function showHint() {
+  
         if (dicasUtilizadas < 3) {
             const novaDica = document.createElement('p');
-            novaDica.textContent = `Dica ${dicasUtilizadas + 1}: ${dicas[dicasUtilizadas]}`;
+            const dica = conjuntodicas['hidrante'] //mudar o local
+            novaDica.textContent = `Dica ${dicasUtilizadas + 1}: ${dica[dicasUtilizadas]}`;
             dicasRecebidas.appendChild(novaDica);
             dicasUtilizadas++;
         }
