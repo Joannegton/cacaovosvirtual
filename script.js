@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let dicasUtilizadas = 0;
     const conjuntodicas = {
         'cadeira refeitorio': ['Onde você come', 'Onde você senta', 'Onde você apresenta'],
-        'porta do banheiro': ['O refúgio dos pensamentos profundos', 'Esconde o segredo da higiene', 'Se fechar, dá privacidade; se abrir, liberdade'],
+        'porta do banheira': ['O refúgio dos pensamentos profundos', 'Esconde o segredo da higiene', 'Se fechar, dá privacidade; se abrir, liberdade'],
         'hidrante': ['Onde a pressão é controlada, você encontra a chave', 'Aqui é onde a força contra o fogo esconde algo valioso', 'Na fonte da segurança contra incêndios é o caminho para descobrir.'],
         'lixo': ['Onde os objetos indesejados vão', 'Onde se livra do que não serve mais', 'Onde você descarta o que não precisa mais'],
         'bebedouro': ['Oásis em meio ao deserto', 'Ponto de encontro para conversas refrescantes', 'Onde a água é servida']
